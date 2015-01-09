@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+  <title>chat</title>
+  <link rel="stylesheet" href="common.css">
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  <script>
+  $(function() {
+    var socket = io.connect();
+    socket.on('msg', function(data) {
+      $('#word').append('<span class="text">'+data+'</span>');
+    });
+ });
+</script>
+</head>
+<body>
+  <h1>This is vive-writer</h1>
+  <article>
+    <p id="word"><span>
+  </article>
+</body>
+</html>
