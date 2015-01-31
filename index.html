@@ -11,18 +11,18 @@
   $(function() {
     var socket = io.connect();
     var action = ('ontouchstart' in document) ? 'touchstart' : 'click';
-    var abc = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    var key = abc[Math.floor(Math.random() * abc.length)];
+    socket.emit('negotiation');
+    socket.on('now',function(data){
+      key = data[Math.floor(Math.random() * data.length)];
+      $('button[name=chara]').text(key);
+    });
     var cval = Math.round(Math.random()*360);
     $('body').css('background', 'hsl('+ cval +',50%,50%)');
-    $('button[name=chara]').on(action, function() {
-      socket.emit('chara', key);
-      return false;
-    });
-    $('button[name=chara]').append(key);
     $('button[name=vibes]').on(action, function(){
       socket.emit('vibes', cval);
-      return false;
+    });
+    $('button[name=chara]').on(action, function() {
+      socket.emit('chara', key);
     });
  });
 </script>

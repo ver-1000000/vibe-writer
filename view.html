@@ -10,11 +10,32 @@
   <script>
   $(function() {
     var socket = io.connect();
+    var log = '';
+    var dict = ['I','lov','you♡'];
+    var dictCount = 0;
+    var vibeCount = 0;
+    $('em').text(dict[dictCount]);
+    socket.on('negotiation', function(){
+      socket.emit('now', dict[dictCount]);
+    });
     socket.on('chara', function(data) {
+      log += data;
       $('#word').append('<span class="text">'+data+'</span>');
+      $('html,body').animate({ scrollTop: $(document).height() }, 'fast');
+      if(log.match(dict[dictCount])){
+        $('article#congrats').css('display','block').fadeOut(2000);
+        $('article#congrats h3').text('MAX VIBES '+vibeCount+'!!');
+        dictCount = (dict.length> (dictCount+1))? (dictCount+1): 0;
+        log = '';
+        socket.emit('now', dict[dictCount]);
+        $('em').text(dict[dictCount]);
+        $('.text').fadeOut(2000, function(){$(this).remove();});
+        vibeCount = 0;
+      }
     });
     socket.on('vibes', function(data) {
-      $('body').append('<div class="vibes" style="color:hsl('+data+',50%,50%);top:'+Math.round(Math.random()*100)+'%;left:'+Math.round(Math.random()*100)+'%;transform:scale('+($(".vibes").length*0.05)+');">＿人人人＿<br />＞VIBES!＜<br />‾ＹＹＹＹ‾</div>');
+      vibeCount = ($(".vibes").length>vibeCount)?$(".vibes").length:vibeCount;
+      $('body').append('<div class="vibes" style="color:hsl('+data+',50%,50%);top:'+Math.round(Math.random()*100)+'%;left:'+Math.round(Math.random()*100)+'%;font-size:'+($(".vibes").length*.5+10)+'px;">＿人人人＿<br />＞VIBES!＜<br />‾ＹＹＹＹ‾</div>');
       $('.vibes').fadeOut(2000, function(){$(this).remove();});
     });
  });
@@ -22,8 +43,14 @@
 </head>
 <body id="view">
   <h1>This is vive-writer</h1>
-  <article>
+  <article id="paper">
     <p id="word"></p>
+  <p>Please type "<em></em>"</p>
+  </article>
+  <article id="congrats">
+    <h1>SUPER VIBES!!</h1>
+    <h2>Congratulations!</h2>
+    <h3></h3>
   </article>
 </body>
 </html>
