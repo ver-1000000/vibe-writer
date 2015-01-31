@@ -1,36 +1,65 @@
+/* common style */
 body{
+  background: #efefef;
+  position: relative;
   text-align: center;
   font-size:xx-large;
   word-wrap:break-word;
   overflow-y:hidden
 }
-p{margin: 0;display:inline;}
+
+/* input page(index) style */
+button{
+  background: #eee;
+  display: block;
+  height: 3em;
+  width: 3em;
+  margin: .5em auto;
+  border: outset .5em #ddd;
+  border-top: outset .25em #ddd;
+  border-bottom: outset .3em #ddd;
+  font-size: 2em;
+  box-shadow: 0 0 .1em rgba(0,0,0,.2),inset 0 0 1em #bbb;
+  -webkit-box-shadow: 0 0 .1em #000, inset 0 0 1em #bbb;
+}
+
+/* ******************* view style */
+#view article{
+  background: #fff;
+  width: 50%;
+  min-width: 800px;
+  left: 0;
+  right: 0;
+  margin: 1em auto;
+  padding: .5em;
+  text-align: left;
+  box-shadow: 0 0 .1em #bbb;
+}
+p#word{
+  background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAAyAgMAAADglVkZAAAACVBMVEVra2vQ0ND////kRK62AAAAEElEQVQI12NoYKAtZGBwAADg4BhBJKyLoAAAAABJRU5ErkJggg==');
+  font-size: 46px;
+  line-height: 50px;
+}
+#word:after{
+  content: '|';
+  animation: cursor .5s linear infinite alternate;
+  -webkit-animation: cursor .5s linear infinite alternate;
+}
+@keyframes cursor{
+  50% {color: #fff;}
+  100% {color: #000;}
+}
+@-webkit-keyframes cursor{
+  50% {color: #fff;}
+  100% {color: #000;}
+}
 .text{
   display:inline-block;
   height:1em;
   overflow:visible;
-  -webkit-animation:text .5s;
   animation:text .5s;
+  -webkit-animation:text .5s;
 }
-input{
-  display:block;
-  margin:1em auto;
-  height:5em;
-  width:5em;
-  border:outset 1em #777;
-  border-top:outset .5em #777;
-  border-bottom:outset .7em #777;
-  tap-highlight-color:rgba(0,0,0,0);
-  -webkit-transform: scale(1);
- /* -webkit-tap-highlight-color:rgba(0,0,0,0); */
-  -webkit-box-shadow: 0 0 5px #000, inset 0 0 3px #000;
-  -webkit-transition: all .1s ease;
-}
-/* input:hover{
-  -webkit-transform: scale(0.95);
-  -webkit-box-shadow: 0 0 10px #000, inset 0 0 5px #000;
-  border-color: #666;
-} */
 @keyframes text{
   0%{opacity: 0;transform: scale(15);}
   100%{opacity: 1;transform: scale(1);}
@@ -39,11 +68,9 @@ input{
   0%{opacity: 0;transform: scale(15);}
   100%{opacity: 1;transform: scale(1);}
 }
-.cursor{
-  -webkit-animation: flash .5s linear infinite alternate;
-  animation: flash .5s linear infinite alternate;
-}
-@keyframes flash{
-  50% {color: #fff;}
-  100% {color: #000;}
+.vibes{
+  position: fixed;
+  white-space: nowrap;
+  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
 }

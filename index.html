@@ -6,24 +6,30 @@
   <title>chat</title>
   <link rel="stylesheet" href="/common.css">
   <script src="/socket.io/socket.io.js"></script>
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  <script src="/jquery.min.js"></script>
   <script>
   $(function() {
     var socket = io.connect();
-    $('form').submit(function() {
-      socket.emit('msg', $('input').val());
-//      $('input').val('');
+    var action = ('ontouchstart' in document) ? 'touchstart' : 'click';
+    var abc = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    var key = abc[Math.floor(Math.random() * abc.length)];
+    var cval = Math.round(Math.random()*360);
+    $('body').css('background', 'hsl('+ cval +',50%,50%)');
+    $('button[name=chara]').on(action, function() {
+      socket.emit('chara', key);
       return false;
     });
-    var abc = 'abcdefghijklmnopqrstuvwxyz'
-      $('input').val(abc[Math.floor(Math.random() * abc.length)]);
+    $('button[name=chara]').append(key);
+    $('button[name=vibes]').on(action, function(){
+      socket.emit('vibes', cval);
+      return false;
+    });
  });
 </script>
 </head>
 <body>
-  <form>
-    <input type="submit" ></input>
-  </form>
+  <button type="button" name="chara"></button>
   <a href="./">reload</a>
+  <button type="button" name="vibes">VIBES!</button>
 </body>
 </html>

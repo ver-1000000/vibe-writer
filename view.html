@@ -6,20 +6,24 @@
   <title>chat</title>
   <link rel="stylesheet" href="common.css">
   <script src="/socket.io/socket.io.js"></script>
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  <script src="/jquery.min.js"></script>
   <script>
   $(function() {
     var socket = io.connect();
-    socket.on('msg', function(data) {
+    socket.on('chara', function(data) {
       $('#word').append('<span class="text">'+data+'</span>');
+    });
+    socket.on('vibes', function(data) {
+      $('body').append('<div class="vibes" style="color:hsl('+data+',50%,50%);top:'+Math.round(Math.random()*100)+'%;left:'+Math.round(Math.random()*100)+'%;transform:scale('+($(".vibes").length*0.05)+');">＿人人人＿<br />＞VIBES!＜<br />‾ＹＹＹＹ‾</div>');
+      $('.vibes').fadeOut(2000, function(){$(this).remove();});
     });
  });
 </script>
 </head>
-<body>
+<body id="view">
   <h1>This is vive-writer</h1>
   <article>
-    <p id="word"><span>
+    <p id="word"></p>
   </article>
 </body>
 </html>
