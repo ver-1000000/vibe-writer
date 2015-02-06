@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
-  <title>chat</title>
+  <title>Public view</title>
   <link rel="stylesheet" href="common.css">
   <script src="/socket.io/socket.io.js"></script>
   <script src="/jquery.min.js"></script>
@@ -11,7 +11,7 @@
   $(function() {
     var socket = io.connect();
     var log = '';
-    var dict = ['I','lov','you♡'];
+    var dict = ['hello','world!','I','lov','you♡'];
     var dictCount = 0;
     var vibeCount = 0;
     $('em').text(dict[dictCount]);
@@ -23,7 +23,7 @@
       $('#word').append('<span class="text">'+data+'</span>');
       $('html,body').animate({ scrollTop: $(document).height() }, 'fast');
       if(log.match(dict[dictCount])){
-        $('article#congrats').css('display','block').fadeOut(2000);
+        $('article#congrats').css('display','block').fadeOut(5000);
         $('article#congrats h3').text('MAX VIBES '+vibeCount+'!!');
         dictCount = (dict.length> (dictCount+1))? (dictCount+1): 0;
         log = '';
@@ -35,14 +35,14 @@
     });
     socket.on('vibes', function(data) {
       vibeCount = ($(".vibes").length>vibeCount)?$(".vibes").length:vibeCount;
-      $('body').append('<div class="vibes" style="color:hsl('+data+',50%,50%);top:'+Math.round(Math.random()*100)+'%;left:'+Math.round(Math.random()*100)+'%;font-size:'+($(".vibes").length*.5+10)+'px;">＿人人人＿<br />＞VIBES!＜<br />‾ＹＹＹＹ‾</div>');
+      $('body').append('<div class="vibes" style="color:hsl('+data+',50%,50%);top:'+Math.round(Math.random()*100)+'%;left:'+Math.round(Math.random()*100)+'%;font-size:'+($(".vibes").length+10)+'px;">＿人人人＿<br />＞VIBES!＜<br />‾ＹＹＹＹ‾</div>');
       $('.vibes').fadeOut(2000, function(){$(this).remove();});
     });
  });
 </script>
 </head>
 <body id="view">
-  <h1>This is vive-writer</h1>
+  <h1>This is vibe-writer</h1>
   <article id="paper">
     <p id="word"></p>
   <p>Please type "<em></em>"</p>
