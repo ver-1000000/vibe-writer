@@ -15,8 +15,8 @@
     var dictCount = 0;
     var vibeCount = 0;
     $('em').text(dict[dictCount]);
-    socket.on('negotiation', function(){
-      socket.emit('now', dict[dictCount]);
+    socket.on('negotiation', function(socket_id){
+      socket.emit('now', dict[dictCount],socket_id);
     });
     socket.on('chara', function(data) {
       log += data;
