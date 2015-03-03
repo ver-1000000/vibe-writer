@@ -23,9 +23,9 @@ io.sockets.on('connection', function(socket) {
     io.sockets.emit('vibes', data);
   });
   socket.on('negotiation', function() {
-    io.sockets.emit('negotiation');
+    io.sockets.emit('negotiation',socket.id);
   });
-  socket.on('now', function(data) {
-    io.sockets.emit('now', data);
+  socket.on('now', function(data,socket_id) {
+     io.sockets.to(socket_id).emit('now',data);
   });
 });
