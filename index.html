@@ -25,7 +25,11 @@
     ws.emit('negotiation');
     ws.on('now',function(data){
       key = data[Math.floor(Math.random() * data.length)];
-      $('button[name=chara]').text(key);
+      if(key=='%'){
+        $('button[name=chara]').text("BS");
+      }else{
+        $('button[name=chara]').text(key);
+      }
     });
 
     $(this).gShake(function() { 

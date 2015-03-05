@@ -1,15 +1,16 @@
-/* common style */
+/* ******************* common style */
 body{
+  background: url('wood.jpg');
   font-family: 'Noto Serif' serif;
-  background: #efefef;
   position: relative;
   text-align: center;
-  font-size:xx-large;
-  word-wrap:break-word;
-  overflow-y:hidden
+  color: #555;
+  font-size: xx-large;
+  word-wrap: break-word;
+  overflow-y: hidden;
 }
 
-/* input page(index) style */
+/* ******************* input page(index) style */
 button{
   background: #eee;
   display: block;
@@ -27,14 +28,14 @@ button{
 
 /* ******************* view style */
 article#paper{
-  background: #fff;
+  background: url('paper.jpg') #fff;
   left: 0;
   right: 0;
   margin: 1em 10%;
   padding: .5em;
   text-align: left;
-  box-shadow: 0 0 .1em #bbb;
-  -webkit-box-shadow: 0 0 .1em #bbb;
+  box-shadow: 0 0 9px #000;
+  -webkit-box-shadow: 0 0 9px #000;
 }
 article#congrats{
   background: #fff;
@@ -45,14 +46,25 @@ article#congrats{
   left: 0;
   top: 0;
   padding: 1em;
-  animation: quake .2s linear 0s infinite alternate;
-  -webkit-animation: quake .2s linear 0s infinite alternate;
+}
+article#congrats h1{
+  text-shadow: 0 0 20px #000;
+}
+h1{
+  color: #fff;
+  text-shadow: 0 0 5px #000;
+}
+em{
+  color: #222;
+  font-size: 150%;
+  text-shadow: 0 0 2px #000;
 }
 p#word{
+  background: url('data:image/gif;base64,R0lGODlhAQAyAKECAFlZWbu7u////////yH5BAEKAAIALAAAAAABADIAAAIHlI+py30QCgA7');
   font-family: 'Inconsolata', sans-serif;
-  background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAAyAgMAAADglVkZAAAACVBMVEVra2vQ0ND////kRK62AAAAEElEQVQI12NoYKAtZGBwAADg4BhBJKyLoAAAAABJRU5ErkJggg==');
   font-size: 46px;
   line-height: 50px;
+  color: #111;
 }
 #word:after{
   content: '|';
@@ -85,9 +97,10 @@ p#word{
   100%{opacity: 1;-webkit-transform: scale(1);}
 }
 .vibes{
-  font-family: 'Inconsolata', sans-serif;
+  font:bold 1em 'Inconsolata', sans-serif;
   position: fixed;
   white-space: nowrap;
+  text-shadow: 1px 1px 0 #000, 1px -1px 0 #000, -1px -1px 0 #000, -1px 1px 0 #000;
   transform: translate(-50%, -50%);
   -webkit-transform: translate(-50%, -50%);
   animation: quake .1s linear 0s infinite alternate;
