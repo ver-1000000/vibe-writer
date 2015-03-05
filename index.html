@@ -9,20 +9,20 @@
   <script src="/jquery.min.js"></script>
   <script>
   $(function() {
-    var socket = io.connect();
+    var ws = io.connect();
     var action = ('ontouchstart' in document) ? 'touchstart' : 'click';
-    socket.emit('negotiation');
-    socket.on('now',function(data){
+    var cval = Math.round(Math.random()*360);
+    ws.emit('negotiation');
+    ws.on('now',function(data){
       key = data[Math.floor(Math.random() * data.length)];
       $('button[name=chara]').text(key);
     });
-    var cval = Math.round(Math.random()*360);
     $('body').css('background', 'hsl('+ cval +',50%,50%)');
     $('button[name=vibes]').on(action, function(){
-      socket.emit('vibes', cval);
+      ws.emit('vibes', cval);
     });
     $('button[name=chara]').on(action, function() {
-      socket.emit('chara', key);
+      ws.emit('chara', key);
     });
  });
 </script>
