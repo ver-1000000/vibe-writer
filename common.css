@@ -1,5 +1,6 @@
 /* common style */
 body{
+  font-family: 'Noto Serif' serif;
   background: #efefef;
   position: relative;
   text-align: center;
@@ -48,6 +49,7 @@ article#congrats{
   -webkit-animation: quake .2s linear 0s infinite alternate;
 }
 p#word{
+  font-family: 'Inconsolata', sans-serif;
   background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAAyAgMAAADglVkZAAAACVBMVEVra2vQ0ND////kRK62AAAAEElEQVQI12NoYKAtZGBwAADg4BhBJKyLoAAAAABJRU5ErkJggg==');
   font-size: 46px;
   line-height: 50px;
@@ -83,6 +85,7 @@ p#word{
   100%{opacity: 1;-webkit-transform: scale(1);}
 }
 .vibes{
+  font-family: 'Inconsolata', sans-serif;
   position: fixed;
   white-space: nowrap;
   transform: translate(-50%, -50%);
