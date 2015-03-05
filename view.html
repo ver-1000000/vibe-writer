@@ -18,7 +18,6 @@
     $('em').text(dict[dictCount]);
 
     ws.emit('now', dict[dictCount]);
-
     ws.on('chara', function(data) {
       log += data;
       $('#word').append('<span class="text">'+data+'</span>');

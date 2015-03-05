@@ -12,17 +12,19 @@
     var ws = io.connect();
     var action = ('ontouchstart' in document) ? 'touchstart' : 'click';
     var cval = Math.round(Math.random()*360);
-    ws.emit('negotiation');
-    ws.on('now',function(data){
-      key = data[Math.floor(Math.random() * data.length)];
-      $('button[name=chara]').text(key);
-    });
+
     $('body').css('background', 'hsl('+ cval +',50%,50%)');
     $('button[name=vibes]').on(action, function(){
       ws.emit('vibes', cval);
     });
     $('button[name=chara]').on(action, function() {
       ws.emit('chara', key);
+    });
+
+    ws.emit('negotiation');
+    ws.on('now',function(data){
+      key = data[Math.floor(Math.random() * data.length)];
+      $('button[name=chara]').text(key);
     });
  });
 </script>
