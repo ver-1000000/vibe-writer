@@ -9,16 +9,17 @@
   <script src="/jquery.min.js"></script>
   <script>
   $(function() {
-    var socket = io.connect();
+    var ws = io.connect();
     var log = '';
     var dict = ['hello','world!','I','lov','you♡'];
     var dictCount = 0;
     var vibeCount = 0;
+
     $('em').text(dict[dictCount]);
-    socket.on('negotiation', function(){
-      socket.emit('now', dict[dictCount]);
-    });
-    socket.on('chara', function(data) {
+
+    ws.emit('now', dict[dictCount]);
+
+    ws.on('chara', function(data) {
       log += data;
       $('#word').append('<span class="text">'+data+'</span>');
       $('html,body').animate({ scrollTop: $(document).height() }, 'fast');
@@ -27,18 +28,20 @@
         $('article#congrats h3').text('MAX VIBES '+vibeCount+'!!');
         dictCount = (dict.length> (dictCount+1))? (dictCount+1): 0;
         log = '';
-        socket.emit('now', dict[dictCount]);
+        ws.emit('now', dict[dictCount]);
         $('em').text(dict[dictCount]);
         $('.text').fadeOut(2000, function(){$(this).remove();});
         vibeCount = 0;
       }
     });
-    socket.on('vibes', function(data) {
+
+    ws.on('vibes', function(data) {
       vibeCount = ($(".vibes").length>vibeCount)?$(".vibes").length:vibeCount;
       $('body').append('<div class="vibes" style="color:hsl('+data+',50%,50%);top:'+Math.round(Math.random()*100)+'%;left:'+Math.round(Math.random()*100)+'%;font-size:'+($(".vibes").length+10)+'px;">＿人人人＿<br />＞VIBES!＜<br />‾ＹＹＹＹ‾</div>');
       $('.vibes').fadeOut(2000, function(){$(this).remove();});
     });
- });
+
+  });
 </script>
 </head>
 <body id="view">
