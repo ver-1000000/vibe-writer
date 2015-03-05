@@ -13,7 +13,7 @@
   $(function() {
     var ws = io.connect();
     var log = '';
-    var dict = ['ai%%','w%','I','l','♡'];
+    var dict = ['act%','bad%','cut%','dig%','eye%','flee%','give%','hard%','idea%','joke%','kitten%','launch%','manual%','needle%','object%','passion%','quality%','rainbow%','science%','thirsty%','ultimate%','vacation%','weakness%','XxXxXxXxX%','yesterday%','zoo%'];
     var dictCount = 0;
     var vibeCount = 0;
     var vibes = function(data){
@@ -23,6 +23,7 @@
     };
 
     $('em').text(dict[dictCount].slice(0,-1));
+    $('#paper p small strong').text(dict[dictCount].length-1);
 
     ws.emit('now', dict[dictCount]);
     ws.on('chara', function(data) {
@@ -45,6 +46,7 @@
         log = '';
         ws.emit('now', dict[dictCount]);
         $('em').text(dict[dictCount].slice(0,-1));
+        $('#paper p small strong').text(dict[dictCount].length-1);
         $('.text').fadeOut(3500, function(){$(this).remove();});
         vibeCount = 0;
       }
@@ -63,6 +65,7 @@
   <article id="paper">
     <p id="word"></p>
     <p>Please type " <em></em> "</p>
+    <p><small style="color:red;">LEVEL <strong></strong></small></p>
   </article>
   <article id="congrats">
     <h1>SUPER VIBES TIME!!</h1>

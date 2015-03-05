@@ -9,14 +9,24 @@ body{
   word-wrap: break-word;
   overflow-y: hidden;
 }
-
+p{
+  margin: 0;
+}
 /* ******************* input page(index) style */
+.client, .client body{
+  height: 100%;
+}
 button{
   background: #eee;
   display: block;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
   height: 3em;
   width: 3em;
-  margin: .5em auto;
+  margin: auto;
   padding: 0;
   border: outset .5em #ddd;
   border-top: outset .25em #ddd;
