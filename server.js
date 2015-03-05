@@ -6,6 +6,9 @@ var app = require('http').createServer(function(req, res) {
     } else if (req.url == '/jquery.min.js'){
       res.writeHead(200, {'Content-Type': 'text/javascript'});
       fs.createReadStream('jquery.min.js').pipe(res);
+    } else if (req.url == '/gShake.js'){
+      res.writeHead(200, {'Content-Type': 'text/javascript'});
+      fs.createReadStream('gShake.js').pipe(res);
     } else if (req.url == '/common.css'){
       res.writeHead(200, {'Content-Type': 'text/css'});
       fs.createReadStream('common.css').pipe(res);

@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="/common.css">
   <script src="/socket.io/socket.io.js"></script>
   <script src="/jquery.min.js"></script>
+  <script src="/gShake.js"></script>
   <script>
   $(function() {
     var ws = io.connect();
@@ -25,6 +26,10 @@
     ws.on('now',function(data){
       key = data[Math.floor(Math.random() * data.length)];
       $('button[name=chara]').text(key);
+    });
+
+    $(this).gShake(function() { 
+      ws.emit('vibes', cval);
     });
  });
 </script>
