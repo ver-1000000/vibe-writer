@@ -29,6 +29,7 @@ button{
 /* ******************* view style */
 article#paper{
   background: url('paper.jpg') #fff;
+  position: relative;
   left: 0;
   right: 0;
   margin: 1em 10%;
@@ -70,6 +71,13 @@ p#word{
   content: '|';
   animation: cursor .5s linear infinite alternate;
   -webkit-animation: cursor .5s linear infinite alternate;
+}
+#word .bs{
+  position: absolute;
+  right: 0;
+  bottom: 1em;
+  color: #fff;
+  text-shadow: 0 0 5px #000;
 }
 @keyframes cursor{
   50% {color: #fff;}

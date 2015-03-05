@@ -4,10 +4,10 @@ var app = require('http').createServer(function(req, res) {
       res.writeHead(200, {'Content-Type': 'text/html'});
       fs.createReadStream('index.html').pipe(res);
     } else if (req.url == '/wood.jpg'){
-      res.writeHead(200, {'Content-Type': 'img/jpg'});
+      res.writeHead(200, {'Content-Type': 'image/jpg'});
       fs.createReadStream('wood.jpg').pipe(res);
     } else if (req.url == '/paper.jpg'){
-      res.writeHead(200, {'Content-Type': 'img/jpg'});
+      res.writeHead(200, {'Content-Type': 'image/jpg'});
       fs.createReadStream('paper.jpg').pipe(res);
     } else if (req.url == '/jquery.min.js'){
       res.writeHead(200, {'Content-Type': 'text/javascript'});

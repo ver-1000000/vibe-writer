@@ -13,7 +13,7 @@
   $(function() {
     var ws = io.connect();
     var log = '';
-    var dict = ['iii%','w','I','l','♡'];
+    var dict = ['ai%%','w%','I','l','♡'];
     var dictCount = 0;
     var vibeCount = 0;
     var vibes = function(data){
@@ -28,6 +28,9 @@
     ws.on('chara', function(data) {
       if(data=='%'){
         $('#word span:last').remove();
+        log = log.slice(0,-1);
+        $('#word').append('<p class="bs"><- BackSpace</p>');
+        $('.bs').fadeOut(1000, function(){$(this).remove();});
       } else {
       log += data;
       $('#word').append('<span class="text">'+data+'</span>');
@@ -42,7 +45,7 @@
         log = '';
         ws.emit('now', dict[dictCount]);
         $('em').text(dict[dictCount].slice(0,-1));
-        $('.text').fadeOut(2000, function(){$(this).remove();});
+        $('.text').fadeOut(3500, function(){$(this).remove();});
         vibeCount = 0;
       }
       }
