@@ -1,7 +1,7 @@
 /* ******************* common style */
 body{
   background: url('wood.jpg');
-  font-family: 'Noto Serif' serif;
+  font-family: "Noto Serif", serif;
   position: relative;
   text-align: center;
   color: #555;
@@ -72,7 +72,7 @@ em{
 }
 p#word{
   background: url('data:image/gif;base64,R0lGODlhAQAyAKECAFlZWbu7u////////yH5BAEKAAIALAAAAAABADIAAAIHlI+py30QCgA7');
-  font-family: 'Inconsolata', sans-serif;
+  font-family: "Inconsolata", sans-serif;
   font-size: 46px;
   line-height: 50px;
   color: #111;
