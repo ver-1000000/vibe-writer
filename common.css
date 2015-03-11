@@ -44,7 +44,6 @@ article#paper{
   right: 0;
   margin: 1em 10%;
   padding: .5em;
-  text-align: left;
   box-shadow: 0 0 9px #000;
   -webkit-box-shadow: 0 0 9px #000;
 }
@@ -58,6 +57,10 @@ article#congrats{
   top: 0;
   padding: 1em;
 }
+#congrats h1{
+  animation: quake .1s linear 0s infinite alternate;
+  -webkit-animation: quake .1s linear 0s infinite alternate;
+}
 article#congrats h1{
   text-shadow: 0 0 20px #000;
 }
@@ -66,15 +69,19 @@ h1{
   text-shadow: 0 0 5px #000;
 }
 em{
-  color: #222;
+  color: #000;
   font-size: 150%;
   text-shadow: 0 0 2px #000;
+}
+#view{
+  text-align: center;
 }
 p#word{
   background: url('data:image/gif;base64,R0lGODlhAQAyAKECAFlZWbu7u////////yH5BAEKAAIALAAAAAABADIAAAIHlI+py30QCgA7');
   font-family: "Inconsolata", sans-serif;
   font-size: 46px;
   line-height: 50px;
+  text-align: left;
   color: #111;
 }
 #word:after{

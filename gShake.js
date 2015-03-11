@@ -12,7 +12,7 @@
 (function($) {
 
     var settings = {
-		'sensibility':  2,
+		'sensibility':  10,
 		'timeout': 0,
 		callback: null,   
     };

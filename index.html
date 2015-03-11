@@ -17,10 +17,12 @@
     $('body').css('background', 'hsl('+ cval +',50%,50%)');
     $('button[name=vibes]').on(action, function(){
       ws.emit('vibes', cval);
-      if(Math.random()*5<=1) ws.emit('negotiation');
     });
     $('button[name=chara]').on(action, function() {
       ws.emit('chara', key);
+    });
+    $('p').on(action, function() {
+    ws.emit('negotiation');
     });
 
     ws.emit('negotiation');
@@ -44,7 +46,7 @@
   <button type="button" name="chara"></button>
   <!--
   <a href="./">reload</a>
-  <button type="button" name="vibes">VIBES!</button>
   -->
+  <p class="nego">[debug: change]</p>
 </body>
 </html>

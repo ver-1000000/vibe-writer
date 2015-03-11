@@ -20,6 +20,7 @@
       $('body').append('<div class="vibes" style="color:hsl('+data+',65%,50%);top:'+Math.round(Math.random()*100)+'%;left:'+Math.round(Math.random()*100)+'%;font-size:'+($(".vibes").length+10)+'px;">＿人人人＿<br />＞VIBES!＜<br />‾ＹＹＹＹ‾</div>');
       $('.vibes').fadeOut(1000, function(){$(this).remove();});
       vibeCount = ($(".vibes").length>vibeCount)?$(".vibes").length:vibeCount;
+      new Audio("vibe.wav").play();
     };
 
     $('em').text(dict[dictCount].slice(0,-1));
@@ -36,20 +37,20 @@
       log += data;
       $('#word').append('<span class="text">'+data+'</span>');
       $('html,body').animate({ scrollTop: $(document).height() }, 'fast');
-      if(log.match(dict[dictCount].slice(0,-1))){
-        $('article#congrats').css('display','block');
-        $('article#congrats h3 strong').css('font-size', 16+vibeCount+'px').text(vibeCount);
-        for(i=0;i<vibeCount;i++)
-          setTimeout(function(){vibes(Math.round(Math.random()*360));},100*i);
-        setTimeout(function(){$('article#congrats').fadeOut();},3000);
-        dictCount = (dict.length> (dictCount+1))? (dictCount+1): 0;
-        log = '';
-        ws.emit('now', dict[dictCount]);
-        $('em').text(dict[dictCount].slice(0,-1));
-        $('#paper p small strong').text(dict[dictCount].length-1);
-        $('.text').fadeOut(3500, function(){$(this).remove();});
-        vibeCount = 0;
-      }
+        if(log.match(dict[dictCount].slice(0,-1))){
+          $('article#congrats').css('display','block');
+          $('article#congrats h3 strong').css('font-size', 16+vibeCount+'px').text(vibeCount);
+          for(i=0;i<vibeCount;i++)
+            setTimeout(function(){vibes(Math.round(Math.random()*360));},100*i);
+          setTimeout(function(){$('article#congrats').fadeOut();},3000);
+          dictCount = (dict.length> (dictCount+1))? (dictCount+1): 0;
+          log = '';
+          ws.emit('now', dict[dictCount]);
+          $('em').text(dict[dictCount].slice(0,-1));
+          $('#paper p small strong').text(dict[dictCount].length-1);
+          $('.text').fadeOut(3500, function(){$(this).remove();});
+          vibeCount = 0;
+        }
       }
     });
 
@@ -64,7 +65,7 @@
   <h1>This is vibe-writer</h1>
   <article id="paper">
     <p id="word"></p>
-    <p>Please type " <em></em> "</p>
+    <p class="goal">Please type " <em></em> "</p>
     <p><small style="color:red;">LEVEL <strong></strong></small></p>
   </article>
   <article id="congrats">
