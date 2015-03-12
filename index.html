@@ -37,7 +37,6 @@
 // シェイクジェスチャ検出
     $(this).gShake(function() { 
       ws.emit('vibes', cval);
-      if(Math.random()*5<=1) ws.emit('negotiation');
     });
   });
   </script>
