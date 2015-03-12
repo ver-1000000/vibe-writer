@@ -44,9 +44,11 @@ io.sockets.on('connection', function(socket) {
     io.sockets.emit('vibes', data);
   });
   socket.on('negotiation', function() {
+    // emit current word only ID
     io.sockets.to(socket.id).emit('now', GLdictWord);
   });
   socket.on('now', function(dictWord) {
+    // dictWord to GLOVAL VARIABLE
     GLdictWord = dictWord;
     io.sockets.emit('now', dictWord);
   });
