@@ -2,7 +2,7 @@
 <html lang="ja" class="client">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
   <title>Client view</title>
   <link rel="stylesheet" href="/common.css">
   <script src="/socket.io/socket.io.js"></script>
@@ -13,29 +13,31 @@
     var ws = io.connect();
     var action = ('ontouchstart' in document) ? 'touchstart' : 'click';
     var cval = Math.round(Math.random()*360);
-
+// DOM操作 
     $('body').css('background', 'hsl('+ cval +',50%,50%)');
-    $('button[name=vibes]').on(action, function(){
+    $('button').css('color', 'hsl('+ cval +', 50%, 50%)');
+// WebSocket通信
+    ws.emit('negotiation');
+
+    $('.nego').on(action, function() {
+      ws.emit('negotiation');
+    });
+    $('[name=vibes]').on(action, function(){
       ws.emit('vibes', cval);
     });
-    $('button[name=chara]').on(action, function() {
+    $('[name=chara]').on(action, function() {
       ws.emit('chara', key, cval);
     });
-    $('p').on(action, function() {
-    ws.emit('negotiation');
-    });
 
-    ws.emit('negotiation');
     ws.on('now',function(data){
       key = data[Math.floor(Math.random() * data.length)];
       if(key=='%'){
-        $('button[name=chara]').text("BS");
+        $('[name=chara]').text("BS");
       }else{
-        $('button[name=chara]').text(key);
+        $('[name=chara]').text(key);
       }
     });
-    $('button').css('color', 'hsl('+ cval +', 50%, 50%)');
-
+// シェイクジェスチャ検出
     $(this).gShake(function() { 
       ws.emit('vibes', cval);
       if(Math.random()*5<=1) ws.emit('negotiation');
