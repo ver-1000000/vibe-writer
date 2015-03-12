@@ -2,7 +2,7 @@
 <html lang="ja" class="client">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>Client view</title>
   <link rel="stylesheet" href="/common.css">
   <script src="/socket.io/socket.io.js"></script>
@@ -15,11 +15,8 @@
     var cval = Math.round(Math.random()*360);
 
     $('body').css('background', 'hsl('+ cval +',50%,50%)');
-    $('button[name=vibes]').on(action, function(){
-      ws.emit('vibes', cval);
-    });
     $('button[name=chara]').on(action, function() {
-      ws.emit('chara', key);
+      ws.emit('chara', key, cval);
     });
     $('p').on(action, function() {
     ws.emit('negotiation');
@@ -34,6 +31,7 @@
         $('button[name=chara]').text(key);
       }
     });
+    $('button').css('color', 'hsl('+ cval +', 50%, 50%)');
 
     $(this).gShake(function() { 
       ws.emit('vibes', cval);

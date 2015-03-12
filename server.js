@@ -34,8 +34,8 @@ var app = require('http').createServer(function(req, res) {
 }).listen(3000);
 var io = require('socket.io').listen(app);
 io.sockets.on('connection', function(socket) {
-  socket.on('chara', function(data) {
-    io.sockets.emit('chara', data);
+  socket.on('chara', function(data, color) {
+    io.sockets.emit('chara', data, color );
   });
   socket.on('vibes', function(data) {
     io.sockets.emit('vibes', data);

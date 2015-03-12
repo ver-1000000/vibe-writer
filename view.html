@@ -27,7 +27,7 @@
     $('#paper p small strong').text(dict[dictCount].length-1);
 
     ws.emit('now', dict[dictCount]);
-    ws.on('chara', function(data) {
+    ws.on('chara', function(data, color) {
       new Audio("type.ogg").play();
       if(data=='%'){
         $('#word span:last').remove();
@@ -36,7 +36,7 @@
         $('.bs').fadeOut(1000, function(){$(this).remove();});
       } else {
       log += data;
-      $('#word').append('<span class="text">'+data+'</span>');
+      $('#word').append('<span class="text" style="color:hsl('+color+',50%,50%);">'+data+'</span>');
       $('html,body').animate({ scrollTop: $(document).height() }, 'fast');
         if(log.match(dict[dictCount].slice(0,-1))){
           $('article#congrats').css('display','block');
