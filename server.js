@@ -3,9 +3,12 @@ var app = require('http').createServer(function(req, res) {
     if (req.url == '/'){
       res.writeHead(200, {'Content-Type': 'text/html'});
       fs.createReadStream('index.html').pipe(res);
-    } else if (req.url == '/vibe.wav'){
-      res.writeHead(200, {'Content-Type': 'audio/wav'});
-      fs.createReadStream('vibe.wav').pipe(res);
+    } else if (req.url == '/vibe.ogg'){
+      res.writeHead(200, {'Content-Type': 'audio/ogg'});
+      fs.createReadStream('vibe.ogg').pipe(res);
+    } else if (req.url == '/type.ogg'){
+      res.writeHead(200, {'Content-Type': 'audio/ogg'});
+      fs.createReadStream('type.ogg').pipe(res);
     } else if (req.url == '/wood.jpg'){
       res.writeHead(200, {'Content-Type': 'image/jpg'});
       fs.createReadStream('wood.jpg').pipe(res);

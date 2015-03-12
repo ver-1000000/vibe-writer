@@ -20,7 +20,7 @@
       $('body').append('<div class="vibes" style="color:hsl('+data+',65%,50%);top:'+Math.round(Math.random()*100)+'%;left:'+Math.round(Math.random()*100)+'%;font-size:'+($(".vibes").length+10)+'px;">＿人人人＿<br />＞VIBES!＜<br />‾ＹＹＹＹ‾</div>');
       $('.vibes').fadeOut(1000, function(){$(this).remove();});
       vibeCount = ($(".vibes").length>vibeCount)?$(".vibes").length:vibeCount;
-      new Audio("vibe.wav").play();
+      new Audio("vibe.ogg").play();
     };
 
     $('em').text(dict[dictCount].slice(0,-1));
@@ -28,6 +28,7 @@
 
     ws.emit('now', dict[dictCount]);
     ws.on('chara', function(data) {
+      new Audio("type.ogg").play();
       if(data=='%'){
         $('#word span:last').remove();
         log = log.slice(0,-1);
